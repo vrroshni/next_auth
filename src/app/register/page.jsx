@@ -1,16 +1,30 @@
 "use client"
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 export default function RegisterPage() {
+  const router=useRouter()
   const [data, setData] = useState({
     name: '',
     email: '',
     password: '',
-    address:''
+    address: ''
   })
 
   const registerUser = async (e) => {
-    
- }
+    e.preventDefault()
+    axios.post('/api/register', data)
+    .then(()=>{
+      toast.success("User has been registered")
+      router.push('/login')
+    })
+    .catch((error)=>{
+      // console.log(error)
+      toast.error("Something went  wrong")
+    })
+
+  }
   return (
     <>
 
