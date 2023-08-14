@@ -57,8 +57,20 @@ export const authOptions = {
 
     ],
     callbacks: {
-        async jwt({ token, user, session }) {
+        async jwt({ token, user, session, trigger }) {
+            if (trigger === "update" && session.name) {
+                token.name = session.name
 
+                const newUser = await prisma.user.update({
+                    where: {
+                        id: token.id
+                    },
+                    data: {
+                        name: token.name
+                    }
+                })
+
+            }
             //pass in userid and addres to token
             if (user) {
                 return {
@@ -76,15 +88,17 @@ export const authOptions = {
             return {
                 ...session,
                 user: {
+                    ...session.user,
                     id: token.id,
-                    address: token.address
+                    address: token.address,
+                    name: token.name
                 }
             }
-    
+
         },
 
     },
-    
+
 
     secret: process.env.SECRET,
     session: {
