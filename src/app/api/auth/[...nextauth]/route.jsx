@@ -25,7 +25,7 @@ export const authOptions = {
                 username: { label: "Username", type: "text", placeholder: "Enter  your username" },
             },
             async authorize(credentials) {
-                
+
                 console.log("i am hereeeeeeeeeeeeeee")
                 // check to see if email and password is there
                 if (!credentials.email || !credentials.password) {
@@ -47,7 +47,7 @@ export const authOptions = {
                     throw new Error("Password does not match")
                 }
                 console.log("i am passwordMatch")
-                console.log(user,"useruseruseruser")
+                console.log(user, "useruseruseruser")
 
                 return user
 
@@ -56,6 +56,36 @@ export const authOptions = {
         })
 
     ],
+    callbacks: {
+        async jwt({ token, user, session }) {
+
+            //pass in userid and addres to token
+            if (user) {
+                return {
+                    ...token,
+                    id: user?.id,
+                    address: user?.address
+                }
+            }
+            return token
+
+        },
+        async session({ token, user, session }) {
+
+            //pass in userid and addres to session
+            return {
+                ...session,
+                user: {
+                    id: token.id,
+                    address: token.address
+                }
+            }
+    
+        },
+
+    },
+    
+
     secret: process.env.SECRET,
     session: {
         strategy: "jwt"
