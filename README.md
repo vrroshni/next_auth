@@ -17,36 +17,43 @@ To get started with the project, follow these steps:
 
    ```bash
    git clone https://github.com/vrroshni/next_auth.git
+   ```
 
 2.Navigate to the project directory:
+
+```bash
 cd next_auth
+```
 
 3.Install the dependencies:
+
+```bash
 npm install
+```
 
 ### Configuration
 
 1. Create a .env file in the root directory of the project.
 2. Add the following environment variables to the .env file:
 
- DATABASE_URL="mongodb+srv://     your-username:your-password@your-clustermongodbnet/your-database"
- NODE_ENV="development"
- SECRET="your-secret-key"
- GITHUB_ID="your-github-id"
- GITHUB_SECRET="your-github-secret"
- GOOGLE_ID="your-google-id"
- GOOGLE_SECRET="your-google-secret"
+DATABASE_URL="mongodb+srv:// your-username:your-password@your-clustermongodbnet/your-database"
+NODE_ENV="development"
+SECRET="your-secret-key"
+GITHUB_ID="your-github-id"
+GITHUB_SECRET="your-github-secret"
+GOOGLE_ID="your-google-id"
+GOOGLE_SECRET="your-google-secret"
 
 Replace the placeholders with your actual values.
 
-
 3.Save the .env file.
 
-
 ### Usage
-1. Run the development server:
-npm run dev
 
+1. Run the development server:
+```bash
+   npm run dev
+```
 Open your web browser and navigate to http://localhost:3000 to access the project.
 
 ## Features
@@ -61,3 +68,6 @@ Profile Updates: Enable users to modify their profile details, enhancing persona
 
 Efficient Session Management: Implement NextAuth.js for efficient and secure session handling, ensuring a seamless user experience across the application.
 
+```
+
+```
